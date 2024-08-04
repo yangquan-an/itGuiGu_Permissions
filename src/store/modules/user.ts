@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { loginType } from '../../api/user/type'
-import { login } from '../../api/user/index'
+import { login,info } from '../../api/user/index'
 import { ElMessage } from 'element-plus'
-import router from '../../router'
-import Route from '../../router/route'
+import Route from '../../router/route' // 路由表
+
+
 // 用户小仓库
 // 选项式API
 let userStore = defineStore('user_',{
@@ -24,7 +25,11 @@ let userStore = defineStore('user_',{
             ElMessage.success('登陆成功')
              // 登录成功 存储在localStorageSession
             localStorage.setItem("token",JSON.stringify(result.data.data.token))
-            router.push('/home')
+            // 登录成功之后 就可以获取用户信息了
+            let userInfo = await info()
+            let checkUser = userInfo.data.data.checkUser;
+            localStorage.setItem("username",JSON.stringify(checkUser.username))
+            localStorage.setItem("avatar",JSON.stringify(checkUser.avatar))
             return 'ok';
           }else{
             ElMessage.error('账号或密码错误')

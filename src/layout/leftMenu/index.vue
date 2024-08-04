@@ -5,8 +5,9 @@
                 <el-icon>
                     <component :is="item.meta.icon"></component>
                 </el-icon>
-               {{ item.meta.title }}
+                {{ item.meta.title }}
             </template>
+
         </el-menu-item>
         <!-- 有子路由但是有且只有一个 这个规则专门处理首页的 -->
         <template v-if="item.children && item.children.length == 1">
@@ -32,8 +33,9 @@
 </template>
 
 <script setup lang="ts">
-
 defineProps(['MenuList'])
+
+
 </script>
 <script lang="ts">
 export default {

@@ -27,6 +27,11 @@
 import { FormRules } from 'element-plus'
 import { ref,reactive } from 'vue'
 import userObj  from '../../store/modules/user'
+import { useRoute } from 'vue-router';
+import router from '../../router';
+
+let $route = useRoute()
+
 interface LoginRule {
   username:string,
   password:string,
@@ -56,6 +61,10 @@ let handlerLogin = () =>{
     // 代表用户将输入信息
     if(vaild){
       await user.userLogin(login_label.value)
+
+      let query:any = $route.query.redirect
+      router.push(query ? query : '/')
+
     }
   })
 }

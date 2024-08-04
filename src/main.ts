@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 
-// element-plus 
+// element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // element 国际化配置
@@ -23,17 +23,20 @@ import '../src/style/reset.scss'
 import glodComponent from '../src/components/index.ts'
 glodComponent.install(app)
 
+
+// 鉴权文件
+import '../permission.ts'
+
 // 挂载 pinia
 import pinia from './store/index.ts'
 app.use(pinia)
 
 // element 语言国际化
 app.use(ElementPlus, {
-    locale: zhCn,
-  })
+  locale: zhCn,
+})
 
-
-  app.use(router)
+app.use(router)
 
 // Element-plus 挂载在 vue 实例中
 app.use(ElementPlus).mount('#app')

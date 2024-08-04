@@ -51,9 +51,9 @@ Mock.mock('/api/user/login', 'post', function ({ body }) {
 })
 
 
-Mock.mock("/api/user/info",function(request){
+Mock.mock("/api/user/info",function(){
         // 获取请求头携带token
-        const token =JSON.stringify(localStorage.getItem('token'))
+        const token =JSON.parse(localStorage.getItem('token') as string)
         //查看用户信息是否包含有次token用户
         const checkUser = createUserList().find((item) => item.token === token)
         //没有返回失败的信息
