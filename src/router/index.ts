@@ -10,17 +10,16 @@ let router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    // let fullPath = to.fullPath;
-    // if(!(fullPath.indexOf('login') > 0)){
-    //     let token = localStorage.getItem('token')
-    //     if(token){
-    //         next()
-    //         return;
-    //     }
-    //     ElMessage.error("账号未登录，不允许访问")
-    //     router.replace('/')
-    //     return;
-    // }
+    let fullPath = to.fullPath;
+    if(!(fullPath.indexOf('login') > 0)){
+        let token = localStorage.getItem('token')
+        if(token){
+            next()
+            return;
+        }
+        router.replace('/login')
+        return;
+    }
     next()
 })
 
