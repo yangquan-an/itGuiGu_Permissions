@@ -4,7 +4,7 @@
         <div class="layout_aside">
             <IconLogo> </IconLogo>
             <el-scrollbar class="scrollbar">
-                <el-menu router background-color="#001529" text-color="white" :default-active="nowPath">
+                <el-menu router background-color="#001529" text-color="white" :default-active="useRoute().fullPath">
                     <LeftManu :MenuList />
                 </el-menu>
             </el-scrollbar>
@@ -14,7 +14,13 @@
 
         </div>
         <div class="layout_main">
-            <router-view></router-view>
+            <router-view v-slot="{ Component }">
+                <transition name="fade">
+                    <keep-alive>
+                        <component :is="Component" />
+                    </keep-alive>
+                </transition>
+            </router-view>
         </div>
     </div>
 </template>
@@ -24,10 +30,10 @@ import IconLogo from './iconLogo/index.vue'
 import LeftManu from './leftMenu/index.vue'
 import userInfo from '../store/modules/user'
 import { useRoute } from 'vue-router'
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 let userinfo = userInfo();
 let MenuList = ref(userinfo.constantRoute)
-let nowPath = ref(useRoute().fullPath)
+
 
 
 </script>
