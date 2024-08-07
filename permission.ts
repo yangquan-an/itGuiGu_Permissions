@@ -1,25 +1,33 @@
 import router from './src/router/index'
-
 import nprogress from 'nprogress'
-
 import "nprogress/nprogress.css"
 
+
 router.beforeEach((to, from, next) => {
-
+    document.title = '硅谷甄选' + '-' + to.meta.title;
     nprogress.start();
+    // 首先判断用户是否登录
+    let Token = localStorage.getItem('token')
 
-    let fullPath = to.fullPath;
-    if(!(fullPath.indexOf('login') > 0)){
-        let token = localStorage.getItem('token')
-        if(token){
-            next()
+    if(Token){
+        // 登录
+        if(to.path == '/login'){
+            next('/')
+        }else{
+            next();
         }
-        router.replace('/login')
+    }else{
+        if(to.path == '/login'){
+            next()
+        }else{
+            next({ path: '/login', query: { redirect: to.path } })
+        }
+        // console.log($route)
+        // 未登录
     }
-    next()
+
 })
 
 router.afterEach((to,from) =>{
     nprogress.done()
-    
 })
