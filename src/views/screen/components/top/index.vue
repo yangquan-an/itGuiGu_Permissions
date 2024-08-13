@@ -22,12 +22,12 @@ let $router = useRouter();
 
 let returnHome = () => $router.push('/')
 
-let nowTime = ref(dayjs(new Date()).format("YYYY-MM-DD hh-mm-ss"))
+let nowTime = ref(dayjs(new Date()).format("YYYY-MM-DD HH-mm-ss"))
 
 let timeRef = ref()
 
 timeRef.value = setInterval(() =>{
-    nowTime.value = dayjs(new Date()).format("YYYY-MM-DD hh-mm-ss")
+    nowTime.value = dayjs(new Date()).format("YYYY-MM-DD HH-mm-ss")
 },1000)
 
 // 组件销毁之前清除定时器
