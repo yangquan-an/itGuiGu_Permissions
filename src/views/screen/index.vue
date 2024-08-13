@@ -17,7 +17,9 @@
                     <Line class="line" />
                 </div>
                 <div class="right">
-                    右边
+                    <hotScenic class="hotScenic" />
+                    <Year class="year" />
+                    <dataDetail class="dataDetail" />
                 </div>
             </div>
         </div>
@@ -32,6 +34,9 @@ import sex from './components/sex/index.vue'
 import age from './components/age/index.vue'
 import Map from './components/map/index.vue'
 import Line from './components/line/index.vue'
+import hotScenic from './components/hotScenic/index.vue'
+import dataDetail from './components/dataDetail/index.vue'
+import Year from './components/year/index.vue'
 
 let screen = ref()
 
@@ -56,6 +61,7 @@ function getScale(w=1980,h=1080){
 .contrainer {
     width: 100vw;
     height: 100vh;
+    color: white;
     background-image: url('./images/bg.png');
     background-size: cover;
     font-size: 18px;
@@ -86,17 +92,31 @@ function getScale(w=1980,h=1080){
                 flex: 2;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 margin: 20px;
                 .map{
                     flex: 3;
                     margin-bottom: 30px;
                 }
                 .line{
-                    flex: 1;
+                    flex: 1.5;
                 }
             }
             .right{
                 flex: 1.3;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .hotScenic{
+                    flex: 1;
+                }
+                .year{
+                    flex: 1;
+                    margin: 20px 0px;
+                }
+                .dataDetail{
+                    flex:1
+                }
             }
         }
     }
