@@ -18,6 +18,7 @@ import router from '../src/router/index'
 let app = createApp(App)
 
 import '../src/style/reset.scss'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // 引入注册全局组件的方法
 import glodComponent from '../src/components/index.ts'
@@ -26,6 +27,10 @@ glodComponent.install(app)
 
 // 鉴权文件
 import '../permission.ts'
+
+// 按钮权限
+import { isButton } from './directives/index.ts'
+isButton(app)
 
 // 挂载 pinia
 import pinia from './store/index.ts'
